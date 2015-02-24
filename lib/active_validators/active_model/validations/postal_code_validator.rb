@@ -10,7 +10,7 @@ module ActiveModel
             country = 'us'
           end
         end
-        @formats = PostalCodeValidator.known_formats[country.to_s]
+        @formats = PostalCodeValidator.known_formats[country.to_s.downcase]
         raise "No known postal code formats for country #{country}" unless @formats
         record.errors.add(attribute) if value.blank? || !matches_any?
       end
@@ -21,7 +21,6 @@ module ActiveModel
           'ar' => ['####', '@####@@@'],
           'at' => ['####'],
           'au' => ['####'],
-          'bg' => ['####'],
           'be' => ['####'],
           'bg' => ['####'],
           'br' => ['#####-###', '########'],
@@ -69,7 +68,6 @@ module ActiveModel
           'sk' => ['### ##', '#####'],
           'sm' => ['4789#', '#'],
           'th' => ['#####'],
-          'tr' => ['#####'],
           'tr' => ['#####'],
           'us' => ['#####', '#####-####'],
           'wf' => ['#####'],
